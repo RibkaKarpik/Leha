@@ -1,5 +1,6 @@
 /* Шрифты */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Great+Vibes&display=swap');
+
 /* Общие стили */
 .wedding-invitation {
   font-family: 'Montserrat', sans-serif;
@@ -11,11 +12,9 @@
   font-size: clamp(14px, 2vw, 16px);
 }
 
-
-
 /* Типография */
 h1, h2, h3 {
-  font-family: 'Great Vibes', cursive;
+  font-family: 'Montserrat', cursive;
   font-weight: normal;
   margin: 0.5em 0;
 }
@@ -38,7 +37,6 @@ p, div, span, a, .child-question, .answer, .main-text,
   padding: clamp(20px, 3vw, 40px) clamp(10px, 2vw, 20px);
   box-sizing: border-box;
   opacity: 0;
-  transform: translateY(30px);
   transition: opacity 0.8s ease, transform 0.8s ease;
   margin-bottom: 20px;
   position: relative;
@@ -47,7 +45,34 @@ p, div, span, a, .child-question, .answer, .main-text,
     margin-bottom: 0;
   }
 
-  &.visible {
+  /* Анимация появления слева */
+  &.from-left {
+    transform: translateX(-50px);
+
+    &.visible {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  /* Анимация появления справа */
+  &.from-right {
+    transform: translateX(50px);
+
+    &.visible {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+}
+
+/* Анимации для дочерних элементов */
+.animate-child {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+
+  &.animate-visible {
     opacity: 1;
     transform: translateY(0);
   }
@@ -97,6 +122,16 @@ p, div, span, a, .child-question, .answer, .main-text,
   transition: transform 0.5s ease;
 }
 
+.photo-card2 {
+  border: 2px solid #ddd;
+  padding: clamp(10px, 2vw, 15px);
+  border-radius: 8px;
+  text-align: center;
+  background:  #fffaf0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  width: 80%;
+}
+
 .block1-bottom .photo-card {
   transform: rotate(5deg);
 }
@@ -123,7 +158,7 @@ p, div, span, a, .child-question, .answer, .main-text,
 .flower {
   max-height: min(120px, 25vw);
   width: auto;
-  animation: sway-right 7s ease-in-out infinite;
+  animation: swing 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   transform-origin: center;
 }
 
@@ -156,46 +191,22 @@ p, div, span, a, .child-question, .answer, .main-text,
 }
 
 .smile-emoji {
-  font-size: clamp(3rem, 10vw, 4rem);
   display: grid;
   place-items: center;
   height: 100%;
-  animation: bounce 3s ease infinite;
+  animation: swing 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
-.block1-right-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: min(300px, 90%);
-  justify-self: start;
-}
-
-.answer {
-  font-size: clamp(1rem, 3vw, 1.2rem);
-  margin-top: clamp(10px, 2vw, 15px);
-  text-align: center;
-}
-
-/* Анимации */
-@keyframes sway-left {
-  0%, 100% { transform: rotate(-1deg); }
-  50% { transform: rotate(1deg); }
-}
-
-@keyframes sway-right {
-  0%, 100% { transform: rotate(1deg); }
-  50% { transform: rotate(-1deg); }
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
+@keyframes swing {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 /* Блок 2 */
@@ -220,10 +231,13 @@ p, div, span, a, .child-question, .answer, .main-text,
   background-color: #fffaf0;
   border: 2px solid #f6f3f6;
   border-radius: 12px;
-  padding: clamp(15px, 3vw, 20px) clamp(20px, 5vw, 40px);
+  padding-left:50px;
+  padding-right:50px;
+  padding-top:10px;
+  padding-bottom:10px;
   margin-bottom: clamp(20px, 3vw, 30px);
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Добавляет тень */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .date-day {
@@ -255,7 +269,6 @@ p, div, span, a, .child-question, .answer, .main-text,
 
 .countdown {
   margin: clamp(20px, 3vw, 30px) 0;
-
 }
 
 .countdown-timer {
@@ -383,10 +396,41 @@ p, div, span, a, .child-question, .answer, .main-text,
   width: max-content;
 }
 
+.photo-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  cursor: pointer;
+
+  .modal-content {
+    max-width: 90%;
+    max-height: 90%;
+
+    img {
+      max-width: 100%;
+      max-height: 90vh;
+      object-fit: contain;
+    }
+  }
+}
+
 .gallery-item {
   width: min(300px, 80vw);
   height: min(200px, 50vw);
   flex-shrink: 0;
+  cursor: pointer;
+  transition: transform 0.3s;
+
+  &:hover {
+    transform: scale(1.03);
+  }
 }
 
 .gallery-photo {
@@ -407,4 +451,25 @@ p, div, span, a, .child-question, .answer, .main-text,
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Анимации */
+@keyframes sway-left {
+  0%, 100% { transform: rotate(-1deg); }
+  50% { transform: rotate(1deg); }
+}
+
+@keyframes sway-right {
+  0%, 100% { transform: rotate(1deg); }
+  50% { transform: rotate(-1deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
 }
