@@ -20,6 +20,13 @@ function WeddingInvitation() {
       description: "Усадьба Ольшанное, д. Духовец",
       photo: "two_rings.svg"
     },
+    {
+      time: "17:00",
+      title: "Банкет",
+      description: "Усадьба Ольшанное, д. Духовец",
+      photo: "two_glass.svg"
+    },
+
   ];
 
   // Галерея локации
@@ -172,6 +179,7 @@ function WeddingInvitation() {
             <div class="date-box animate-child">
               <div class="date-day">22</div>
               <div class="date-month">августа</div>
+              <div class="date-day">15:30</div>
             </div>
 
             <p class="signature animate-child">С любовью,<br />Елизавета и Алексей</p>
