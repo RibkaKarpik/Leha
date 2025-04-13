@@ -15,30 +15,20 @@ function WeddingInvitation() {
   // Тайминг мероприятия
   const schedule = [
     {
-      time: "13:00",
+      time: "15:30",
       title: "Регистрация",
-      description: "Дворец бракосочетания №1",
+      description: "Усадьба Ольшанное, д. Духовец",
       photo: "two_rings.svg"
     },
-    {
-      time: "14:30",
-      title: "Банкет",
-      description: "Танцы, веселье и много любви",
-      photo: "two_glass.svg"
-    },
-    {
-      time: "18:00",
-      title: "Торт",
-      description: "Сладкая пауза",
-      photo: "cake.svg"
-    }
   ];
 
   // Галерея локации
   const locationPhotos = [
-    "place1.jpg",
-    "place2.jpg",
-    "place3.jpg"
+    "place5.png",
+    "place2.png",
+    "place3.png",
+    "place4.png",
+    "place1.png"
   ];
 
   const openPhoto = (photo) => {
@@ -59,7 +49,7 @@ function WeddingInvitation() {
   // Обратный отсчет
   const updateCountdown = () => {
     const now = new Date();
-    const weddingDate = new Date(2025, 7, 5, 12, 0, 0);
+    const weddingDate = new Date(2025, 7, 22, 15, 30, 0);
     const diff = weddingDate - now;
 
     if (diff <= 0) {
@@ -142,8 +132,8 @@ function WeddingInvitation() {
               <div class="block1-left animate-child">
                 <p class="child-question">Интересно, кто будет моим мужем, когда я выросту?</p>
                 <div class="photo-card">
-                  <img src="girl.png" alt="Сонечка"/>
-                  <p>КТО-ТО, 4 года</p>
+                  <img src="girl.jpg" />
+                  <p>Лиза, 4 года</p>
                 </div>
               </div>
               <div class="block1-right animate-child">
@@ -152,7 +142,7 @@ function WeddingInvitation() {
             </div>
 
             <div class="block1-middle animate-child">
-              <h1>Л+?=</h1>
+              <h1>Л+Л=</h1>
               <img src="heart.svg" alt="Сердце"/>
             </div>
 
@@ -160,7 +150,7 @@ function WeddingInvitation() {
               <div class="smile-emoji animate-child"><img src={'smile.svg'}/></div>
               <div class="block1-right-content animate-child">
                 <div class="photo-card">
-                  <img src="boy.png" alt="Леха" />
+                  <img src="boy.jpeg"/>
                   <p>Леха, 4 года</p>
                 </div>
                 <p class="answer">Им буду я!</p>
@@ -180,11 +170,11 @@ function WeddingInvitation() {
             </p>
 
             <div class="date-box animate-child">
-              <div class="date-day">05</div>
+              <div class="date-day">22</div>
               <div class="date-month">августа</div>
             </div>
 
-            <p class="signature animate-child">С любовью,<br />КТО-ТО и Алексей</p>
+            <p class="signature animate-child">С любовью,<br />Елизавета и Алексей</p>
 
             <img src="girl_boy.svg" alt="Мы вместе" class="couple-photo animate-child" />
 
@@ -219,9 +209,9 @@ function WeddingInvitation() {
           {/* Блок 3 - Тайминг */}
           <div class="block timing-block">
             <h1 class="animate-child">Тайминг</h1>
-            <p class="timing-description animate-child">
-              Просим вас прибыть на мероприятие за час до начала церемонии, чтобы провести фотосессию и сохранить моменты этого счастливого дня на всю жизнь!
-            </p>
+            {/*<p class="timing-description animate-child">*/}
+            {/*  Просим вас прибыть на мероприятие за час до начала церемонии, чтобы провести фотосессию и сохранить моменты этого счастливого дня на всю жизнь!*/}
+            {/*</p>*/}
 
             <div class="schedule-container">
               <For each={schedule}>
@@ -243,15 +233,12 @@ function WeddingInvitation() {
                 )}
               </For>
             </div>
-          </div>
 
-          {/* Блок 4 - Локация */}
-          <div class="block location-block">
             <h1 class="animate-child">Локация</h1>
             <p class="location-description animate-child">
-              Наше торжество пройдет в стильной усадьбе "Тайны Рублева" по адресу:<br />
-              МО, Маслово, 62 (вблизи МКАД)<br /><br />
-              Пожалуйста, захватите теплые вещи, вечером может быть прохладно)
+              Наше торжество пройдет в стильной усадьбе "Ольшаное" по адресу:<br />
+              Курская область, Октябрьский район, Черницынский сельсовет<br />
+              ул. Прибрежная, д. 1
             </p>
 
             <div class="location-gallery-container animate-child">
@@ -269,10 +256,11 @@ function WeddingInvitation() {
             </div>
 
             <h1 class="map-title animate-child">Как добраться</h1>
-            <div class="map-container animate-child">
-              <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A07f9f691cb29154f435bf29263a6f74491fc2969972ac2cd009f8137cb0532ce&amp;source=constructor" width="683" height="495" frameborder="0"></iframe>
+            <div class={"map_block"}>
+              <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A291dff061acdc1da453cd0ad9e6d0154da94615759b9a0a75650d198fcf1f851&amp;source=constructor" width="676" height="591" frameborder="0"></iframe>
             </div>
-          </div>
+            </div>
+
         </div>
 
         {/* Правая колонка - только для десктопов */}
