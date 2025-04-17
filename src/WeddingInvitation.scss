@@ -69,6 +69,27 @@ html, body {
   }
 }
 
+.blockM {
+  width: 100%;
+  min-height: 70vh;
+  padding: 20px;
+  box-sizing: border-box;
+  position: relative;
+  margin-bottom: 20px;
+  opacity: 0;
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(20px);
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
 .animate-child {
   opacity: 0;
   transition: opacity 0.8s ease, transform 0.8s ease;
@@ -374,6 +395,79 @@ p, div, span, a, .child-question, .answer, .main-text,
   @media (min-width: 480px) {
     font-size: 19px;
   }
+}
+
+/* Блок с дресс-кодом */
+.dress-code-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.color-palette {
+  display: grid;
+  /* На компьютере: 4 колонки (2 строки) */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.color-item {
+  height: 120px;
+  border-radius: 8px;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+
+  &.animate-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &:hover {
+    transform: translateY(-5px) !important;
+  }
+}
+
+/* На мобильных: 2 колонки (4 строки) */
+@media (max-width: 768px) {
+  .color-palette {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .color-item {
+    height: 100px;
+  }
+}
+
+/* Остальные стили остаются без изменений */
+.color-info {
+  width: 100%;
+  padding: 8px;
+  background-color: rgba(255,255,255,0.8);
+  color: #333;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.color-code {
+  font-weight: bold;
+  margin-bottom: 2px;
+  font-size: 19px;
+}
+
+.color-name {
+  font-size: 20px;
 }
 
 /* Блок 3 - Тайминг */

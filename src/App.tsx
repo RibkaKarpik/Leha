@@ -26,7 +26,6 @@ function WeddingInvitation() {
       description: "Усадьба Ольшанное, д. Духовец",
       photo: "two_glass.svg"
     },
-
   ];
 
   // Галерея локации
@@ -38,9 +37,20 @@ function WeddingInvitation() {
     "place1.png"
   ];
 
+  // Цвета дресс-кода
+  const dressCodeColors = [
+    { code: "#f1c4c1", name: "Нежный розовый" },
+    { code: "#eda9a8", name: "Розовый" },
+    { code: "#765c4d", name: "Коричневый" },
+    { code: "#ccaf85", name: "Бежевый" },
+    { code: "#4c6444", name: "Зеленый" },
+    { code: "#cbba9e", name: "Серо-бежевый" },
+    { code: "#8b6340", name: "Темно-бежевый" },
+    { code: "#4e2e19", name: "Шоколадный" }
+  ];
+
   const openPhoto = (photo) => {
     setSelectedPhoto(photo);
-    // Добавляем небольшой таймаут для плавного появления
     setTimeout(() => {
       const modal = document.querySelector('.photo-modal');
       if (modal) modal.classList.add('visible');
@@ -216,10 +226,9 @@ function WeddingInvitation() {
 
           {/* Блок 3 - Тайминг */}
           <div class="block timing-block">
+
+
             <h1 class="animate-child">Тайминг</h1>
-            {/*<p class="timing-description animate-child">*/}
-            {/*  Просим вас прибыть на мероприятие за час до начала церемонии, чтобы провести фотосессию и сохранить моменты этого счастливого дня на всю жизнь!*/}
-            {/*</p>*/}
 
             <div class="schedule-container">
               <For each={schedule}>
@@ -240,6 +249,27 @@ function WeddingInvitation() {
                     </div>
                 )}
               </For>
+            </div>
+
+            <div class="dress-code-block">
+              <h1 class="animate-child">Дресс-код</h1>
+              <p class="dress-code-text animate-child">
+                Мы будем рады, если вы поддержите цветовую палитру нашей свадьбы
+              </p>
+
+              <div class="color-palette">
+                <For each={dressCodeColors}>
+                  {(color, index) => (
+                      <div class="color-item animate-child"
+                           style={`background-color: ${color.code}; transition-delay: ${index() * 0.1}s`}>
+                        <div class="color-info">
+                          <span class="color-code">{color.name}</span>
+                          <span class="color-name">{color.code}</span>
+                        </div>
+                      </div>
+                  )}
+                </For>
+              </div>
             </div>
 
             <h1 class="animate-child">Локация</h1>
@@ -267,8 +297,7 @@ function WeddingInvitation() {
             <div class={"map_block"}>
               <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A291dff061acdc1da453cd0ad9e6d0154da94615759b9a0a75650d198fcf1f851&amp;source=constructor" width="676" height="591" frameborder="0"></iframe>
             </div>
-            </div>
-
+          </div>
         </div>
 
         {/* Правая колонка - только для десктопов */}
